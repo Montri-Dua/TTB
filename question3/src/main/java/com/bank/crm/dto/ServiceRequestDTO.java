@@ -10,13 +10,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import com.bank.crm.enums.RequestStatus;
-import com.bank.crm.enums.RequestType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ServiceRequestDTO {
+	
     public Long getId() {
 		return id;
 	}
@@ -77,11 +78,18 @@ public class ServiceRequestDTO {
 	public void setMetadata(Map<String, Object> metadata) {
 		this.metadata = metadata;
 	}
+	
+	
 	private Long id;
+	@NotBlank(message = "CustomerId is required")
     private String customerId;
+    @NotNull(message = "Type is required")
     private RequestType type;
+    @NotBlank(message = "Description is required")
     private String description;
-    private RequestStatus status; //
+    @NotNull(message = "Priority is required")
+    private RequestStatus status; 
+    @NotNull(message = "Priority is required")
     private RequestPriority priority;
     private String assignedDepartment;
     private LocalDateTime createdAt;

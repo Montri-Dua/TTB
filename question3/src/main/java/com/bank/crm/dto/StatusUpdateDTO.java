@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,8 +38,11 @@ public class StatusUpdateDTO {
 	public void setReasonCode(String reasonCode) {
 		this.reasonCode = reasonCode;
 	}
+	@NotNull(message = "New status is required")
 	private RequestStatus newStatus;
+	@NotBlank(message = "Comment is required")
     private String comment;
+	@NotBlank(message = "UpdatedBy is required")
     private String updatedBy;
     private String reasonCode;
 }
