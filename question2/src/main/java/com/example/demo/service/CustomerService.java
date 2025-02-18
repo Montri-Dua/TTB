@@ -29,10 +29,9 @@ public class CustomerService {
         return convertToDTO(customer);
     }
     
-    public CustomerDTO createCustomer(Customer customerDTO) {
-        Customer customer = new Customer();
-       // BeanUtils.copyProperties(customerDTO, customer);
-        customer = customerRepository.save(customerDTO);
+    public CustomerDTO createCustomer(CustomerDTO customerDTO) {
+        Customer customer = convertToEntity(customerDTO);
+        customer = customerRepository.save(customer);
         return convertToDTO(customer);
     }
     
@@ -40,7 +39,7 @@ public class CustomerService {
         Customer existingCustomer = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + id));
         
-        BeanUtils.copyProperties(customerDTO, existingCustomer, "customerId", "createdOn", "modifiedOn");
+        updateCustomerFromDTO(existingCustomer, customerDTO);
         existingCustomer = customerRepository.save(existingCustomer);
         return convertToDTO(existingCustomer);
     }
@@ -52,9 +51,42 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
     
+    // Convert Entity to DTO
     private CustomerDTO convertToDTO(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
+        
         CustomerDTO customerDTO = new CustomerDTO();
-        BeanUtils.copyProperties(customer, customerDTO);
+        customerDTO.setCustomerId(customer.getCustomerId());
+        customerDTO.setFirstname(customer.getFirstname());
+        customerDTO.setLastname(customer.getLastname());
+        customerDTO.setCustomerDate(customer.getCustomerDate());
+        customerDTO.setIsVIP(customer.getIsVIP());
+        customerDTO.setStatusCode(customer.getStatusCode());
+        customerDTO.setCreatedOn(customer.getCreatedOn());
+        //CreatedOn
         return customerDTO;
+    }
+    
+    // Convert DTO to Entity
+    private Customer convertToEntity(CustomerDTO customerDTO) {
+        if (customerDTO == null) {
+            return null;
+        }
+        
+        Customer customer = new Customer();
+        updateCustomerFromDTO(customer, customerDTO);
+        return customer;
+    }
+    
+    // Update entity from DTO
+    private void updateCustomerFromDTO(Customer customer, CustomerDTO customerDTO) {
+        customer.setFirstname(customerDTO.getFirstname());
+        customer.setLastname(customerDTO.getLastname());
+        customer.setCustomerDate(customerDTO.getCustomerDate());
+        customer.setIsVIP(customerDTO.getIsVIP());
+        customer.setStatusCode(customerDTO.getStatusCode());
+        customer.setCreatedOn(customerDTO.getCreatedOn());
     }
 }

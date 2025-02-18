@@ -39,12 +39,12 @@ public class CustomerDTO {
 		this.lastname = lastname;
 	}
 
-	public LocalDate getCustomerDate() {
+	public LocalDateTime getCustomerDate() {
 		return customerDate;
 	}
 
-	public void setCustomerDate(LocalDate customerDate) {
-		this.customerDate = customerDate;
+	public void setCustomerDate(LocalDateTime localDateTime) {
+		this.customerDate = localDateTime;
 	}
 
 	public Boolean getIsVIP() {
@@ -96,6 +96,6 @@ public class CustomerDTO {
     private LocalDateTime modifiedOn;
     
     @Column(name = "customerDate")
-    private LocalDate customerDate;
+    private LocalDateTime customerDate;
     
 }
