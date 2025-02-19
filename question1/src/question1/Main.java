@@ -1,9 +1,11 @@
 package question1;
 
 public class Main {
+	// Function main
 	 public static void main(String[] args) {
 	     int[] sortedArray = generateSortedArray(1000001); // อาร์เรย์เรียงลำดับจาก 0 ถึง 1,000,000
 	     int target = 900000;    // กำหนดค่าเป้าหมาย
+	     
 	     int result = findNearestValue(sortedArray, target);
 	     
 	     System.out.println("ค่าที่ใกล้เคียง " + target + " ที่สุดคือ: " + result);
@@ -17,7 +19,7 @@ public class Main {
         }
         return array;
     }
-    
+    //ค้นหาค่าที่ใกล้เคียงที่สุด
 	 public static int findNearestValue(int[] arr, int target) {
 	        // กรณี array ว่าง
 	        if (arr == null || arr.length == 0) return -1;
@@ -29,11 +31,11 @@ public class Main {
 	        // ถ้าค่าเป้าหมายมากกว่าค่าสุดท้าย
 	        if (target >= arr[arr.length - 1]) return arr[arr.length - 1];
 
-	        
 	        int left = 0;
 	        int right = arr.length - 1;
 	        // วน loop หาค่าแบบ Binary Search
 	        while (left <= right) {
+	        	// จะค้นหาที่ละครึ่ง
 	            int mid = left + (right - left) / 2;
 
 	            // เจอค่าที่ต้องการพอดี
