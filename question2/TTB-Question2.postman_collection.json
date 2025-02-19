@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "359ba335-1c54-4046-a297-041e2275c422",
+		"name": "TTB-Question2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25862866"
+	},
+	"item": [
+		{
+			"name": "Question2-Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"montri\",\n    \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"montri\", \"password\": \"admin123\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-CreateCustomers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb250cmkiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzM5OTgwODAzLCJpYXQiOjE3Mzk4OTQ0MDN9._kz5xx-WliV0PRfMDjzHZ8goN6r-MFHZgFBQn3xl-BzvO18SRBQTzxUdKaM066HcK3SNEycYpU5JRcy2mrjAtA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"jane\",\r\n    \"lastname\": \"Duangkrut\",\r\n    \"customerDate\": \"2025-02-14T14:00:00\",\r\n    \"isVIP\": true,\r\n    \"statusCode\": \"ACTIVE\",\r\n    \"createdOn\": \"2025-02-12T12:00:00\",\r\n    \"modifiedOn\": \"2025-02-12T12:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-UpdateCustomers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb250cmkiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzM5OTgxMjg4LCJpYXQiOjE3Mzk4OTQ4ODh9.cs5-A-a9xAg-Xn1kUPw5N44R1FxIuqwZfjsHJd1E0husjmWNYH9PYnLCQYj3rzNyN5F435UJmkNnQhIAg5Urzg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Som\",\r\n    \"lastname\": \"Duangkrut\",\r\n    \"customerDate\": \"2025-02-14T14:00:00\",\r\n    \"isVIP\": true,\r\n    \"statusCode\": \"ACTIVE\",\r\n    \"createdOn\": \"2025-02-12T12:00:00\",\r\n    \"modifiedOn\": \"2025-02-12T12:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/api/customers/1033",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"customers",
+						"1033"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-GetCustomersAll",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb250cmkiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzM5OTgxMjg4LCJpYXQiOjE3Mzk4OTQ4ODh9.cs5-A-a9xAg-Xn1kUPw5N44R1FxIuqwZfjsHJd1E0husjmWNYH9PYnLCQYj3rzNyN5F435UJmkNnQhIAg5Urzg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-GetCustomersByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb250cmkiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzM5OTgxMjg4LCJpYXQiOjE3Mzk4OTQ4ODh9.cs5-A-a9xAg-Xn1kUPw5N44R1FxIuqwZfjsHJd1E0husjmWNYH9PYnLCQYj3rzNyN5F435UJmkNnQhIAg5Urzg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/api/customers/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"customers",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Question2-DeleteCustomerByID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb250cmkiLCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzM5OTgxMjg4LCJpYXQiOjE3Mzk4OTQ4ODh9.cs5-A-a9xAg-Xn1kUPw5N44R1FxIuqwZfjsHJd1E0husjmWNYH9PYnLCQYj3rzNyN5F435UJmkNnQhIAg5Urzg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/api/customers/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"api",
+						"customers",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

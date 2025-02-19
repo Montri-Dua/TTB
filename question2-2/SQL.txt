@@ -1,0 +1,36 @@
+CREATE TABLE Sales (
+    SaleId INT IDENTITY(1,1) PRIMARY KEY,  -- รหัสรายการขาย (Auto Increment)
+    CustomerId VARCHAR(10) NOT NULL,       -- รหัสลูกค้า
+    SaleAmount DECIMAL(10,2) NOT NULL,     -- ยอดขาย (สูงสุด 10 หลัก ทศนิยม 2 ตำแหน่ง)
+    SaleDate DATE NOT NULL                 -- วันที่ขาย
+);
+------------------------------------------
+INSERT INTO Sales (CustomerId, SaleAmount, SaleDate) VALUES
+('C001', 5000, '2024-01-15'),
+('C002', 7000, '2023-11-20'),
+('C001', 10000, '2023-12-10'),
+('C003', 15000, '2023-05-05'),
+('C002', 12000, '2024-02-05'),
+('C003', 18000, '2023-12-25'),
+('C004', 20000, '2023-07-12'),
+('C004', 25000, '2024-01-20'),
+('C005', 3000, '2023-10-10'),
+('C005', 4000, '2024-01-01');
+
+-----------------------------------------
+SQL CustomerMaxSales: 
+
+WITH CustomerMaxSales AS (
+    SELECT 
+        CustomerId,
+        MAX(SaleAmount) AS MaxSaleAmount
+    FROM Sales
+    WHERE YEAR(Sales.SaleDate) = YEAR(GETDATE()) - 1  -- กรองเฉพาะปีที่ผ่านมา
+    GROUP BY CustomerId
+)
+SELECT 
+    CustomerId,
+    MaxSaleAmount,
+    RANK() OVER (ORDER BY MaxSaleAmount DESC) AS Rank
+FROM CustomerMaxSales
+ORDER BY MaxSaleAmount DESC;
