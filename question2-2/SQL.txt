@@ -17,20 +17,20 @@ INSERT INTO Sales (CustomerId, SaleAmount, SaleDate) VALUES
 ('C005', 3000, '2023-10-10'),
 ('C005', 4000, '2024-01-01');
 
+
 -----------------------------------------
 SQL CustomerMaxSales: 
 
-WITH CustomerMaxSales AS (
-    SELECT 
-        CustomerId,
-        MAX(SaleAmount) AS MaxSaleAmount
-    FROM Sales
-    WHERE YEAR(Sales.SaleDate) = YEAR(GETDATE()) - 1  -- กรองเฉพาะปีที่ผ่านมา
-    GROUP BY CustomerId
-)
 SELECT 
     CustomerId,
-    MaxSaleAmount,
-    RANK() OVER (ORDER BY MaxSaleAmount DESC) AS Rank
-FROM CustomerMaxSales
-ORDER BY MaxSaleAmount DESC;
+    TotalSales,
+    RANK() OVER (ORDER BY TotalSales DESC) as SalesRank
+FROM (
+    SELECT 
+        CustomerId,
+        SUM(SaleAmount) as TotalSales
+    FROM Sales
+    WHERE YEAR(Sales.SaleDate) = YEAR(GETDATE()) - 1 
+    GROUP BY CustomerId
+) subquery
+ORDER BY TotalSales DESC
