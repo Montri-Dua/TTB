@@ -1,9 +1,10 @@
 # Getting Starter
-ใน Project ขอ รวม Service ครับ เนื่องจากทำไม่ทันครับ
+ใน Project ขอ รวม Service ครับ เนื่องจากติดปัญหาเรื่องการ Authen จึงจะขออนุญาตรวม Service ก่อนครับ 
 ที่ออกแบบไว่จะ Design ตาม Service ดังนี้
-com.bank.request
-com.bank.Workflow
-com.bank.status
+ - com.bank.request
+ - com.bank.Workflow
+ - com.bank.backend
+ - com.bank.status
 
 #install MS SQL Server 2022
 ## Pull
